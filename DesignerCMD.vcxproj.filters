@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="EventHandle">
+      <UniqueIdentifier>{80d176f5-0c50-4c4a-930f-c6caef55a0c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DesignerViewer">
+      <UniqueIdentifier>{d1189d5c-a8fa-4d63-8b35-a696e869b7ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Document">
+      <UniqueIdentifier>{f8928281-11de-47b5-a39a-f9ddd7c9f0f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cmd">
+      <UniqueIdentifier>{d4e8c639-673e-4021-a720-5fb70f42f0ce}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Export.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DesignerViewer\DesignerViewer.h">
+      <Filter>DesignerViewer</Filter>
+    </ClInclude>
+    <ClInclude Include="cmd\cmd.h">
+      <Filter>cmd</Filter>
+    </ClInclude>
+    <ClInclude Include="Document\Document.h">
+      <Filter>Document</Filter>
+    </ClInclude>
+    <ClInclude Include="Document\DocumentMgr.h">
+      <Filter>Document</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Export.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DesignerViewer\DesignerViewer.cpp">
+      <Filter>DesignerViewer</Filter>
+    </ClCompile>
+    <ClCompile Include="cmd\cmd.cpp">
+      <Filter>cmd</Filter>
+    </ClCompile>
+    <ClCompile Include="Document\DocumentMgr.cpp">
+      <Filter>Document</Filter>
+    </ClCompile>
+    <ClCompile Include="Document\Document.cpp">
+      <Filter>Document</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
