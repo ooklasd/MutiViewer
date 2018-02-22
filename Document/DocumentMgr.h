@@ -58,6 +58,8 @@ namespace designer
 		Document* getDocument(size_t index){return _documentVector.at(index);}
 		const Document* getDocument(size_t index)const {return _documentVector.at(index);}
 
+		size_t addDocument(Document* pdoc);
+
 		size_t getDocumentIndex(Document* pdoc) const;
 
 	protected:

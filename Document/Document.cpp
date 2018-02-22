@@ -11,6 +11,12 @@ namespace designer
 	}
 
 
+	designer::DesignerViewer* Document::getOrCreateViewer()
+	{
+		_designerViewer = new DesignerViewer(osgViewer::CompositeViewer::CullDrawThreadPerContext);
+		return _designerViewer;
+	}
+
 	Document* Document::cloneType() const
 	{
 		return new Document();

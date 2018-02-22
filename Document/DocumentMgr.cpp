@@ -17,6 +17,11 @@ namespace designer
 		});
 	}
 
+	size_t DocumentMgr::addDocument(Document* pdoc)
+	{
+		_documentVector.push_back(pdoc);return _documentVector.size()-1;
+	}
+
 	size_t DocumentMgr::getDocumentIndex(Document* pdoc) const
 	{
 		auto itf = std::find(_documentVector.begin(),_documentVector.end(),pdoc);

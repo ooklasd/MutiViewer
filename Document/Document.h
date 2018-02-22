@@ -21,6 +21,7 @@ namespace designer
 
 	public:
 		//∂‡ ”Õº
+		DesignerViewer* getOrCreateViewer();
 		DesignerViewer* getViewer(){return _designerViewer;}
 		const DesignerViewer* getViewer()const {return _designerViewer;}
 

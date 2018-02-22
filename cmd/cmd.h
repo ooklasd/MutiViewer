@@ -1,9 +1,14 @@
 #pragma once
 #include "hgcd/MgrCoreCD/WICommand.h"
-#include "Document/Document.h"
+#include "..\Document/Document.h"
 #include "..\Export.h"
 
 class MgrCore::WICommand;
+
+
+#define CMD_STATIC(name)  \
+	static const char* commandName(){return #name;}\
+	static name* creator(){return new name();}
 
 namespace designer
 {
@@ -11,8 +16,7 @@ namespace designer
 	class DesignerViewer;
 	class cmd :public MgrCore::WICommand
 	{
-	public:
-	
+	public:	
 
 	public:
 		//====================================================================================
@@ -41,6 +45,7 @@ namespace designer
 
 		std::list<osg::ref_ptr<osg::Node>>& getCombdoorPickNodes();
 		osg::Node* getCombdoorPickNode();
-
 	};
+
+
 }
