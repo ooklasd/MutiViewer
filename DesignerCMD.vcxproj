@@ -57,7 +57,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\..\..\lib;..\..\..\Ext\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>MgrCoreCDd.lib;osgd.lib;osgViewerd.lib;dll_jsond.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>MgrCoreCDd.lib;osgd.lib;osgViewerd.lib;osgGA.lib;dll_jsond.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\..\..\lib\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
@@ -91,6 +91,7 @@
     <ClInclude Include="DesignerViewer\DesignerViewer.h" />
     <ClInclude Include="Document\Document.h" />
     <ClInclude Include="Document\DocumentMgr.h" />
+    <ClInclude Include="EventHandle\PickNodeEventHandler.h" />
     <ClInclude Include="Export.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -100,6 +101,7 @@
     <ClCompile Include="DesignerViewer\DesignerViewer.cpp" />
     <ClCompile Include="Document\Document.cpp" />
     <ClCompile Include="Document\DocumentMgr.cpp" />
+    <ClCompile Include="EventHandle\PickNodeEventHandler.cpp" />
     <ClCompile Include="Export.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>

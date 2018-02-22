@@ -51,6 +51,9 @@
     <ClInclude Include="Document\DocumentMgr.h">
       <Filter>Document</Filter>
     </ClInclude>
+    <ClInclude Include="EventHandle\PickNodeEventHandler.h">
+      <Filter>EventHandle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -73,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="Document\Document.cpp">
       <Filter>Document</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandle\PickNodeEventHandler.cpp">
+      <Filter>EventHandle</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

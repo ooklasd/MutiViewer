@@ -3,7 +3,7 @@
 #include <osg/ref_ptr>
 #include "..\Export.h"
 #include <osgViewer/CompositeViewer>
-#include "DesignerViewer/DesignerViewer.h"
+#include "..\DesignerViewer/DesignerViewer.h"
 #include "hgcd\MgrCoreCD\WCommandManager.h"
 
 class MgrCore::WCommandManager;
@@ -14,7 +14,7 @@ namespace designer
 
 
 	class DesignerViewer;
-	class Document :public osg::Referenced
+	class Document :public osg::Object
 	{
 	public: 
 		Document();
@@ -26,6 +26,23 @@ namespace designer
 
 		//命令管理器
 		MgrCore::WCommandManager& WCommandManager() { return _wCommandManager; }
+
+
+		virtual Document* cloneType() const;
+
+
+		virtual osg::Object* clone(const osg::CopyOp&) const;
+
+
+		virtual const char* libraryName() const
+		{
+			return "DesignerCMD";
+		}
+
+		virtual const char* className() const
+		{
+			return "Document";
+		}
 
 	public:
 		// 执行命令json，返回json
@@ -45,6 +62,7 @@ namespace designer
 
 		std::string _fileName;//文件全路径
 		std::string _filePath;//所在文件夹路径
+		
 	};
 
 

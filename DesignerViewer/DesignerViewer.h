@@ -11,7 +11,7 @@ namespace designer
 	class DesignerViewer : public osgViewer::CompositeViewer
 	{
 	public:
-		DesignerViewer(osgViewer::ViewerBase::ThreadingModel threadingModel=osgViewer::CompositeViewer::SingleThreaded);
+		DesignerViewer(osgViewer::ViewerBase::ThreadingModel threadingModel=osgViewer::CompositeViewer::AutomaticSelection);
 						
 		//====================================================================================
 		// 获取视口
@@ -39,6 +39,10 @@ namespace designer
 		osg::Group* ShapeRoot() { return _shapeRoot; }
 		osg::Group* ExtractRoot() { return _extractRoot; }
 		osg::Group* CombdoorRoot() { return _combdoorRoot; }
+
+
+		std::list<osg::ref_ptr<osg::Node>>& ShapePickNodes() { return _shapePickNodes; }
+		std::list<osg::ref_ptr<osg::Node>>& CombdoorPickNodes() { return _combdoorPickNodes; }
 	protected:
 
 		//轮廓线视图
@@ -52,7 +56,8 @@ namespace designer
 
 		osg::ref_ptr<osg::Group> _shapeRoot,_extractRoot,_combdoorRoot;
 
-
+		//当前点选的节点
+		std::list<osg::ref_ptr<osg::Node>> _shapePickNodes,_extractPickNodes,_combdoorPickNodes;
 	};
 
 }

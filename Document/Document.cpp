@@ -11,6 +11,16 @@ namespace designer
 	}
 
 
+	Document* Document::cloneType() const
+	{
+		return new Document();
+	}
+
+	osg::Object* Document::clone(const osg::CopyOp&) const
+	{
+		throw std::logic_error("The method or operation is not implemented.");
+	}
+
 	bool Document::executeJson(const Json::Value& json,MgrCore::ResultType &resultStringList)
 	{
 		return _wCommandManager.executeJson(json,resultStringList,this);
