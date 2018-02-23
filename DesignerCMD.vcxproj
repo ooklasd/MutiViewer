@@ -57,7 +57,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\..\..\lib;..\..\..\Ext\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>MgrCoreCDd.lib;osgd.lib;osgViewerd.lib;osgGA.lib;dll_jsond.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>MgrCoreCDd.lib;osgd.lib;osgViewerd.lib;osgGA.lib;dll_jsond.lib;OpenThreadsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\..\..\lib\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>

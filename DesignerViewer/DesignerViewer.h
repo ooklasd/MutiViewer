@@ -1,5 +1,6 @@
 #pragma once
 #include <osgViewer/CompositeViewer>
+#include <OpenThreads/ReadWriteMutex>
 #include "..\Export.h"
 class osgViewer::CompositeViewer;
 class osg::Camera;
@@ -43,6 +44,17 @@ namespace designer
 
 		std::list<osg::ref_ptr<osg::Node>>& ShapePickNodes() { return _shapePickNodes; }
 		std::list<osg::ref_ptr<osg::Node>>& CombdoorPickNodes() { return _combdoorPickNodes; }
+
+		
+
+		virtual void frame(double simulationTime=USE_REFERENCE_TIME);
+
+		OpenThreads::ScopedReadLock getReadLock(){return OpenThreads::ScopedReadLock(_frameMutex);}
+		OpenThreads::ScopedWriteLock getWriteLock(){return OpenThreads::ScopedWriteLock(_frameMutex);}
+
+	public:
+		void clearRoot();
+
 	protected:
 
 		//轮廓线视图
@@ -58,6 +70,8 @@ namespace designer
 
 		//当前点选的节点
 		std::list<osg::ref_ptr<osg::Node>> _shapePickNodes,_extractPickNodes,_combdoorPickNodes;
+
+		OpenThreads::ReadWriteMutex _frameMutex;
 	};
 
 }

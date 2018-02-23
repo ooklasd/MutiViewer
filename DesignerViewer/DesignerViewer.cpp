@@ -20,4 +20,22 @@ namespace designer
 		_combdoorView = new osgViewer::View();
 				
 	}
+
+	void DesignerViewer::frame(double simulationTime/*=USE_REFERENCE_TIME*/)
+	{
+		auto lock = getReadLock();
+		osgViewer::CompositeViewer::frame(simulationTime);
+	}
+
+	void DesignerViewer::clearRoot()
+	{
+		auto numV = getNumViews();
+		for (int i = 0;i<numV;++i)
+		{
+			auto v = getView(i);
+			auto g = dynamic_cast<osg::Group*>(v->getSceneData());
+			if(g) g->removeChildren(0,g->getNumChildren());
+		}
+	}
+
 }

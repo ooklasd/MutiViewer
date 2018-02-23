@@ -54,6 +54,15 @@ namespace designer
 		bool executeString(const TCHAR* commandString,MgrCore::ResultType &resultStringList);
 		bool executeString(const TCHAR* commandString);
 
+		bool executeCommand(const std::string& commmandName,const Json::Value& data,MgrCore::ResultType &resultStringList);
+		bool executeCommand(const std::string& commmandName,const Json::Value& data);
+
+		static Json::Value makeCommand(const std::string& commmandName,const Json::Value& data);
+		static Json::Value makeCommand(const std::string& commmandName,Json::Value&& data);
+public:
+		//是否为空白文档
+		bool isEmpty()const;;
+
 	protected:
 		//多视图
 		osg::ref_ptr<DesignerViewer> _designerViewer;

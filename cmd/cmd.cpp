@@ -31,4 +31,24 @@ namespace designer
 		return getCombdoorPickNodes().empty()?nullptr:getCombdoorPickNodes().back();
 	}
 
+	Json::Value& cmd::result(int code)
+	{
+		mResult["result"] = code;
+		return mResult["data"];
+	}
+
+	Json::Value& cmd::result(int code,const char* str)
+	{
+		result(code);
+		mResult["data"] = str;
+		return mResult["data"];
+	}
+
+	Json::Value& cmd::result(int code,const Json::Value& data)
+	{
+		result(code);
+		mResult["data"] = data;	
+		return mResult["data"];
+	}
+
 }

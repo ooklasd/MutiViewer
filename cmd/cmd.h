@@ -8,7 +8,7 @@ class MgrCore::WICommand;
 
 #define CMD_STATIC(name)  \
 	static const char* commandName(){return #name;}\
-	static name* creator(){return new name();}
+	static void* creator(){return new name##CMD();}
 
 namespace designer
 {
@@ -16,7 +16,10 @@ namespace designer
 	class DesignerViewer;
 	class cmd :public MgrCore::WICommand
 	{
-	public:	
+	public:
+		enum resultCode{
+			resError = 0,resOK=1
+		};
 
 	public:
 		//====================================================================================
@@ -45,7 +48,14 @@ namespace designer
 
 		std::list<osg::ref_ptr<osg::Node>>& getCombdoorPickNodes();
 		osg::Node* getCombdoorPickNode();
+
+
+		//====================================================================================
+		// 快捷返回函数
+		//result返回Data节点
+		//====================================================================================
+		Json::Value& result(int code);
+		Json::Value& result(int code,const char* str);
+		Json::Value& result(int code,const Json::Value& data);
 	};
-
-
 }

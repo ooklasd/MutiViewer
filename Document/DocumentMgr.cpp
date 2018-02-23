@@ -22,6 +22,16 @@ namespace designer
 		_documentVector.push_back(pdoc);return _documentVector.size()-1;
 	}
 
+	size_t DocumentMgr::removeDocument(Document* pdoc)
+	{
+		auto itf = std::find(_documentVector.begin(),_documentVector.end(),pdoc);
+		if(itf != _documentVector.end())
+		{
+			_documentVector.erase(itf);
+		}
+		return _documentVector.size()-1;
+	}
+
 	size_t DocumentMgr::getDocumentIndex(Document* pdoc) const
 	{
 		auto itf = std::find(_documentVector.begin(),_documentVector.end(),pdoc);

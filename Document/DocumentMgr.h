@@ -7,10 +7,11 @@
 #include <unordered_set>
 
 //获取document管理器
-#define g_DocumentMgr designer::DocumentMgr::Instance()
+#define g_DocumentMgr (designer::DocumentMgr::Instance())
 
 //获取当前的文档
-#define g_Document g_DocumentMgr.CurDocument()
+#define g_DocumentPtr (g_DocumentMgr.CurDocument())
+#define g_Document (*g_DocumentMgr.CurDocument())
 
 namespace designer
 {
@@ -26,7 +27,6 @@ namespace designer
 
 		typedef std::list<PreChangeFunc> PreChangeEvent;
 		typedef std::list<OnChangeFunc> OnChangeEvent;
-
 
 		designer::Document* CurDocument() const { return _curDocument.get(); }
 		void CurDocument(designer::Document* newValue) {
@@ -48,9 +48,7 @@ namespace designer
 			{
 				(*it)(old.get(),_curDocument.get());
 			}			
-		}
-
-		
+		}		
 	public:
 		static DocumentMgr& Instance();
 		virtual ~DocumentMgr(){}
@@ -59,12 +57,14 @@ namespace designer
 		const Document* getDocument(size_t index)const {return _documentVector.at(index);}
 
 		size_t addDocument(Document* pdoc);
+		size_t removeDocument(Document* pdoc);
 
 		size_t getDocumentIndex(Document* pdoc) const;
 
 	protected:
 		DocumentVector _documentVector;
 		osg::ref_ptr<Document> _curDocument;
+		void * _UIPtr;
 
 
 		//====================================================================================

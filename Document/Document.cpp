@@ -49,4 +49,36 @@ namespace designer
 		return _wCommandManager.executeString(commandString,resultStringList,this);
 	}
 
+	bool Document::executeCommand(const std::string& commmandName,const Json::Value& data)
+	{
+		MgrCore::ResultType resultStringList;
+		return executeCommand(commmandName,data,resultStringList);
+	}
+
+	bool Document::executeCommand(const std::string& commmandName,const Json::Value& data,MgrCore::ResultType &resultStringList)
+	{
+		return executeJson(makeCommand(commmandName,data),resultStringList);
+	}
+
+	Json::Value Document::makeCommand(const std::string& commmandName,const Json::Value& data)
+	{
+		Json::Value res;
+		res["command"] = commmandName;
+		res["data"] = data;
+		return std::move(res);
+	}
+
+	Json::Value Document::makeCommand(const std::string& commmandName,Json::Value&& data)
+	{
+		Json::Value res;
+		res["command"] = commmandName;
+		res["data"] = std::move(data);
+		return std::move(res);
+	}
+
+	bool Document::isEmpty() const
+	{
+		return (_designerViewer == nullptr || _designerViewer->CombdoorRoot() == nullptr || _designerViewer->CombdoorRoot()->getNumChildren() == 0);
+	}
+
 }
