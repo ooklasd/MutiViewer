@@ -13,6 +13,7 @@
 #include "osg/ShapeDrawable"
 #include "osg/Shape"
 #include "osg/PolygonMode"
+#include "osg/LineWidth"
 namespace designer
 {
 
@@ -162,17 +163,49 @@ namespace designer
 
 	osg::Node* PickNodeFrameEvent::CreateFrame(const osg::BoundingBox& bb)
 	{
-		
-		using namespace osg;
+		osg::Vec3 min = bb._min;
+		osg::Vec3 max = bb._max;
+
 		osg::ref_ptr<osg::Geode> frame = new osg::Geode;
-		auto boxsize = bb._max-bb._min;
-		frame->addDrawable(new osg::ShapeDrawable(new osg::Box(bb.center(),boxsize[0],boxsize[1],boxsize[2])));
-		
-		//设置ss的渲染模式为线框
-		auto ss = frame->getOrCreateStateSet();
-		auto mode = new  osg::PolygonMode(PolygonMode::FRONT_AND_BACK,PolygonMode::LINE);
-		ss->setAttributeAndModes(mode,osg::StateAttribute::ON);
-		//ss->setMode(StateAttribute::DEPTH,osg::StateAttribute::OFF);
+
+		osg::Geometry* geom = new osg::Geometry;
+		osg::Vec3Array* vertices = new osg::Vec3Array;
+		vertices->push_back(osg::Vec3(min.x(), min.y(), min.z()));
+		vertices->push_back(osg::Vec3(max.x(), min.y(), min.z()));
+		vertices->push_back(osg::Vec3(max.x(), max.y(), min.z()));
+		vertices->push_back(osg::Vec3(min.x(), max.y(), min.z()));
+		vertices->push_back(osg::Vec3(min.x(), min.y(), max.z()));
+		vertices->push_back(osg::Vec3(max.x(), min.y(), max.z()));
+		vertices->push_back(osg::Vec3(max.x(), max.y(), max.z()));
+		vertices->push_back(osg::Vec3(min.x(), max.y(), max.z()));
+		geom->setVertexArray(vertices);
+		osg::Vec4Array* color = new osg::Vec4Array;
+		color->push_back(osg::Vec4(1.0f, 1.0f, 0.0f, 1.0f));
+		geom->setColorArray(color);
+		geom->setColorBinding(osg::Geometry::BIND_OVERALL);
+		GLushort idxLines[24] = 
+		{	
+			0, 1,
+			1, 2,
+			2, 3,
+			3, 0,
+			4, 5,
+			5, 6,
+			6, 7,
+			7, 4,
+			0, 4,
+			1, 5,
+			2, 6,
+			3, 7
+		};
+		geom->addPrimitiveSet( new osg::DrawElementsUShort( osg::PrimitiveSet::LINES, 24, idxLines ) );
+
+		frame->addDrawable(geom);
+		frame->getOrCreateStateSet()->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
+		frame->getOrCreateStateSet()->setMode(GL_DEPTH_TEST, osg::StateAttribute::OFF);
+		osg::LineWidth* lw = new osg::LineWidth;
+		lw->setWidth(1.0f);
+		frame->getOrCreateStateSet()->setAttributeAndModes(lw, osg::StateAttribute::ON);
 		return frame.release();
 	}
 
