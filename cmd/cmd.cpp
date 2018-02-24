@@ -51,4 +51,11 @@ namespace designer
 		return mResult["data"];
 	}
 
+	Json::Value& cmd::result(int code,Json::Value&& data)
+	{
+		result(code);
+		mResult["data"] = std::move(data);	
+		return mResult["data"];
+	}
+
 }

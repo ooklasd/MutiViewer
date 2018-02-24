@@ -2,7 +2,7 @@
 #include "Export.h"
 #include "osgGA/GUIEventHandler"
 #include "osg/CopyOp"
-#include "DesignerViewer/CombdoorView.h"
+#include "DesignerViewer/PickView.h"
 
 namespace designer
 {
@@ -31,11 +31,11 @@ namespace designer
 
 
 	//点选触发添加外框的事件
-	class DESIGNERCMD_API PickNodeFrameEvent:public CombdoorView::Event
+	class DESIGNERCMD_API PickNodeFrameEvent:public PickView::Event
 	{
 	public:
 		PickNodeFrameEvent(){}
-		virtual void operator()(CombdoorView* v,osg::Node* n);
+		virtual void operator()(PickView* v,osg::Node* n);
 
 		//生成的外框和Geode同级
 		static osg::Node* CreateFrame(osg::Geode* g);
@@ -51,5 +51,12 @@ namespace designer
 		//物体选择窗口
 		typedef std::map<osg::Node*,osg::ref_ptr<osg::Node>> NodeSelectFrame;
 		NodeSelectFrame _nodeSelectFrame;
+	};
+
+	//更新
+	class DESIGNERCMD_API UpViewsEvent:public PickView::Event
+	{
+	public:
+
 	};
 }

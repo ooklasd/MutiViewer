@@ -1,14 +1,14 @@
-#include "CombdoorView.h"
+#include "PickView.h"
 
 
 
 
-bool designer::CombdoorView::isSelect(osg::Node* n)
+bool designer::PickView::isSelect(osg::Node* n)
 {
 	return std::find(_pickNodes.begin(),_pickNodes.end(),n) != _pickNodes.end();
 }
 
-void designer::CombdoorView::addPickNode(osg::Node* n)
+void designer::PickView::addPickNode(osg::Node* n)
 {
 	_lastPickNodes = _pickNodes;
 	_pickNodes.push_back(n);
@@ -16,14 +16,14 @@ void designer::CombdoorView::addPickNode(osg::Node* n)
 
 }
 
-void designer::CombdoorView::removePickNode(osg::Node* n)
+void designer::PickView::removePickNode(osg::Node* n)
 {
 	_lastPickNodes = _pickNodes;
 	_pickNodes.remove(n);
 	Event::CallEvents(_removeEvents,this,n);
 }
 
-void designer::CombdoorView::removeAllPickNode()
+void designer::PickView::removeAllPickNode()
 {
 	_lastPickNodes = _pickNodes;
 	_pickNodes.clear();
@@ -31,7 +31,7 @@ void designer::CombdoorView::removeAllPickNode()
 }
 
 
-void designer::CombdoorView::Event::CallEvents(Event::List& l,CombdoorView* v,osg::Node* n)
+void designer::PickView::Event::CallEvents(Event::List& l,PickView* v,osg::Node* n)
 {
 	for (auto it = l.begin();it != l.end();++it)
 	{

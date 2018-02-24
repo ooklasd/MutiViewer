@@ -3,7 +3,7 @@
 #include <osgGA/TrackballManipulator>
 #include <osgDB/ReadFile>
 
-#include "CombdoorView.h"
+#include "PickView.h"
 
 namespace designer
 {
@@ -19,8 +19,8 @@ namespace designer
 		//创建三个视图
 		_shapeView = new osgViewer::View();
 		_extractView = new osgViewer::View();
-		_combdoorView = new CombdoorView();
-				
+		_combdoorView = new PickView();
+
 	}
 
 	void DesignerViewer::frame(double simulationTime/*=USE_REFERENCE_TIME*/)

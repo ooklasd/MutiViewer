@@ -76,6 +76,21 @@ namespace designer
 		return std::move(res);
 	}
 
+	bool Document::sendToUI(const Json::Value& json)
+	{
+		if(_uiCall != nullptr)
+			return (*_uiCall)(json);
+		return false;
+	}
+
+	bool Document::sendToUI(const std::string& commmandName,const Json::Value& data)
+	{
+		Json::Value cmdjson;
+		cmdjson["command"] = commmandName;
+		cmdjson["data"] = data;
+		return sendToUI(cmdjson);
+	}
+
 	bool Document::isEmpty() const
 	{
 		return (_designerViewer == nullptr || _designerViewer->CombdoorRoot() == nullptr || _designerViewer->CombdoorRoot()->getNumChildren() == 0);

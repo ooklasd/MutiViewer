@@ -5,12 +5,12 @@
 #include <map>
 namespace designer
 {
-	class DESIGNERCMD_API CombdoorView: public osgViewer::View
+	class DESIGNERCMD_API PickView: public osgViewer::View
 	{
 	public:
 
 		virtual osg::Object* clone(const osg::CopyOp& copyop) const{
-			return new CombdoorView(*this);
+			return new PickView(*this);
 		}
 
 		virtual const char* className() const{return "PickView";}
@@ -32,15 +32,14 @@ namespace designer
 		//清空选点，触发OnChangePickNode
 		void removeAllPickNode();
 
-
 	public:
 		class Event :public osg::Referenced
 		{
 		public:
 			typedef std::list<osg::ref_ptr<Event>> List;
-			static void CallEvents(Event::List& l,CombdoorView* v,osg::Node* n);
+			static void CallEvents(Event::List& l,PickView* v,osg::Node* n);
 			virtual ~Event(){}
-			virtual void operator()(CombdoorView* v,osg::Node* n) = 0;
+			virtual void operator()(PickView* v,osg::Node* n) = 0;
 		};
 
 		Event::List& AddEvents(){return _addEvents;}

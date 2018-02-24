@@ -55,19 +55,31 @@ namespace designer
 		bool executeString(const TCHAR* commandString);
 
 		bool executeCommand(const std::string& commmandName,const Json::Value& data,MgrCore::ResultType &resultStringList);
-		bool executeCommand(const std::string& commmandName,const Json::Value& data);
+		bool executeCommand(const std::string& commmandName,const Json::Value& data = Json::Value());
 
 		static Json::Value makeCommand(const std::string& commmandName,const Json::Value& data);
 		static Json::Value makeCommand(const std::string& commmandName,Json::Value&& data);
 
-		
-		//三维传送数据到界面的通道
+		class jsonCall : public osg::Referenced
+		{
+		public:
+			virtual ~jsonCall(){}
+			virtual bool operator()(const Json::Value& cmdJson) = 0;
+		};
+
+		//回馈到UI
+		void setUiCall(jsonCall* val) { _uiCall = val; }
+
+		bool sendToUI(const Json::Value& json);
+		bool sendToUI(const std::string& commmandName,const Json::Value& data);
 
 public:
 		//是否为空白文档
-		bool isEmpty()const;;
+		bool isEmpty()const;
 
 	protected:
+		osg::ref_ptr<jsonCall> _uiCall;
+
 		//多视图
 		osg::ref_ptr<DesignerViewer> _designerViewer;
 

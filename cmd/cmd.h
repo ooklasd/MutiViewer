@@ -57,5 +57,6 @@ namespace designer
 		Json::Value& result(int code);
 		Json::Value& result(int code,const char* str);
 		Json::Value& result(int code,const Json::Value& data);
+		Json::Value& result(int code,Json::Value&& data);
 	};
 }

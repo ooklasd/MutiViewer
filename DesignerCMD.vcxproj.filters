@@ -54,8 +54,11 @@
     <ClInclude Include="EventHandle\PickNodeEventHandler.h">
       <Filter>EventHandle</Filter>
     </ClInclude>
-    <ClInclude Include="designerviewer\CombdoorView.h">
+    <ClInclude Include="designerviewer\PickView.h">
       <Filter>DesignerViewer</Filter>
+    </ClInclude>
+    <ClInclude Include="cmd\SceneCMD.h">
+      <Filter>cmd</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -83,8 +86,11 @@
     <ClCompile Include="EventHandle\PickNodeEventHandler.cpp">
       <Filter>EventHandle</Filter>
     </ClCompile>
-    <ClCompile Include="DesignerViewer\CombdoorView.cpp">
+    <ClCompile Include="DesignerViewer\PickView.cpp">
       <Filter>DesignerViewer</Filter>
+    </ClCompile>
+    <ClCompile Include="cmd\SceneCMD.cpp">
+      <Filter>cmd</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
