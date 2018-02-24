@@ -37,23 +37,23 @@ namespace designer
 		class Event :public osg::Referenced
 		{
 		public:
+			typedef std::list<osg::ref_ptr<Event>> List;
+			static void CallEvents(Event::List& l,PickView* v,osg::Node* n);
 			virtual ~Event(){}
 			virtual void operator()(PickView* v,osg::Node* n) = 0;
 		};
-		typedef std::list<osg::ref_ptr<Event>> EventList;
 
-		EventList& AddEvents(){return _addEvents;}
-		EventList& RemoveEvents(){return _removeEvents;}
-		EventList& RemoveAllEvents(){return _removeAllEvents;}
-		static void CallEvents(EventList& l,PickView* v,osg::Node* n);
+		Event::List& AddEvents(){return _addEvents;}
+		Event::List& RemoveEvents(){return _removeEvents;}
+		Event::List& RemoveAllEvents(){return _removeAllEvents;}
 
 	protected:
 		std::list<osg::ref_ptr<osg::Node>> _pickNodes;//当前节点
 		std::list<osg::ref_ptr<osg::Node>> _lastPickNodes;//当前节点
 
-		EventList _addEvents;
-		EventList _removeEvents;
-		EventList _removeAllEvents;
+		Event::List _addEvents;
+		Event::List _removeEvents;
+		Event::List _removeAllEvents;
 
 		//物体选择窗口
 		typedef std::map<osg::Node*,osg::ref_ptr<osg::Node>> NodeSelectFrame;
