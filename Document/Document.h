@@ -59,6 +59,10 @@ namespace designer
 
 		static Json::Value makeCommand(const std::string& commmandName,const Json::Value& data);
 		static Json::Value makeCommand(const std::string& commmandName,Json::Value&& data);
+
+		
+		//三维传送数据到界面的通道
+
 public:
 		//是否为空白文档
 		bool isEmpty()const;;

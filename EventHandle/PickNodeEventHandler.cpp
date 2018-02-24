@@ -5,7 +5,7 @@
 #include <string>
 #include <osgViewer/View>
 
-#include "DesignerViewer/PickView.h"
+#include "DesignerViewer/CombdoorView.h"
 #include "hgcw/hgCD/Mesh.h"
 #include "hgcw/hgCD/LocateEntity.h"
 
@@ -61,7 +61,7 @@ namespace designer
 
 	void PickNodeEventHandler::PickObject()
 	{
-		auto viewer = dynamic_cast<PickView*>(_aa);
+		auto viewer = dynamic_cast<CombdoorView*>(_aa);
 		if(viewer == nullptr) return;
 		bool isMuti = _ea->getModKeyMask() & osgGA::GUIEventAdapter::MODKEY_SHIFT;
 
@@ -113,7 +113,7 @@ namespace designer
 		}
 	}
 
-	void PickNodeFrameEvent::operator()(PickView* v,osg::Node* n)
+	void PickNodeFrameEvent::operator()(CombdoorView* v,osg::Node* n)
 	{
 		auto nodes = v->getPickNodes();
 		nodes.sort();

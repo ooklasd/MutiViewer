@@ -89,7 +89,7 @@
   <ItemGroup>
     <ClInclude Include="cmd\cmd.h" />
     <ClInclude Include="DesignerViewer\DesignerViewer.h" />
-    <ClInclude Include="DesignerViewer\PickView.h" />
+    <ClInclude Include="designerviewer\CombdoorView.h" />
     <ClInclude Include="Document\Document.h" />
     <ClInclude Include="Document\DocumentMgr.h" />
     <ClInclude Include="EventHandle\PickNodeEventHandler.h" />
@@ -100,7 +100,7 @@
   <ItemGroup>
     <ClCompile Include="cmd\cmd.cpp" />
     <ClCompile Include="DesignerViewer\DesignerViewer.cpp" />
-    <ClCompile Include="DesignerViewer\PickView.cpp" />
+    <ClCompile Include="DesignerViewer\CombdoorView.cpp" />
     <ClCompile Include="Document\Document.cpp" />
     <ClCompile Include="Document\DocumentMgr.cpp" />
     <ClCompile Include="EventHandle\PickNodeEventHandler.cpp" />
