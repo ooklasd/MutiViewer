@@ -57,7 +57,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\..\..\lib;..\..\..\Ext\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>MgrCoreCDd.lib;osgd.lib;osgViewerd.lib;osgGA.lib;dll_jsond.lib;OpenThreadsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>MgrCoreCDd.lib;osgd.lib;osgViewerd.lib;osgGAd.lib;dll_jsond.lib;OpenThreadsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\..\..\lib\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
@@ -89,6 +89,7 @@
   <ItemGroup>
     <ClInclude Include="cmd\cmd.h" />
     <ClInclude Include="DesignerViewer\DesignerViewer.h" />
+    <ClInclude Include="DesignerViewer\PickView.h" />
     <ClInclude Include="Document\Document.h" />
     <ClInclude Include="Document\DocumentMgr.h" />
     <ClInclude Include="EventHandle\PickNodeEventHandler.h" />
@@ -99,6 +100,7 @@
   <ItemGroup>
     <ClCompile Include="cmd\cmd.cpp" />
     <ClCompile Include="DesignerViewer\DesignerViewer.cpp" />
+    <ClCompile Include="DesignerViewer\PickView.cpp" />
     <ClCompile Include="Document\Document.cpp" />
     <ClCompile Include="Document\DocumentMgr.cpp" />
     <ClCompile Include="EventHandle\PickNodeEventHandler.cpp" />

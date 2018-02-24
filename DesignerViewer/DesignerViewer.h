@@ -45,7 +45,7 @@ namespace designer
 		std::list<osg::ref_ptr<osg::Node>>& ShapePickNodes() { return _shapePickNodes; }
 		std::list<osg::ref_ptr<osg::Node>>& CombdoorPickNodes() { return _combdoorPickNodes; }
 
-		
+
 
 		virtual void frame(double simulationTime=USE_REFERENCE_TIME);
 
