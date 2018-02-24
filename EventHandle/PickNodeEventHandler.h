@@ -1,7 +1,8 @@
 #pragma once
+#include "Export.h"
 #include "osgGA/GUIEventHandler"
 #include "osg/CopyOp"
-#include"Export.h"
+#include "DesignerViewer/PickView.h"
 
 namespace designer
 {
@@ -28,4 +29,27 @@ namespace designer
 		osgGA::GUIActionAdapter* _aa;
 	};
 
+
+	//点选触发添加外框的事件
+	class DESIGNERCMD_API PickNodeFrameEvent:public PickView::Event
+	{
+	public:
+		PickNodeFrameEvent(){}
+		virtual void operator()(PickView* v,osg::Node* n);
+
+		//生成的外框和Geode同级
+		static osg::Node* CreateFrame(osg::Geode* g);
+
+		//生成的外框应该为Group的子节点
+		static osg::Node* CreateFrame(osg::Group* g);
+
+		static osg::Node* CreateFrame(const osg::BoundingBox& bb);
+
+		void addFrame(osg::Node* n);
+		void removeFrame(osg::Node* n);
+	private:
+		//物体选择窗口
+		typedef std::map<osg::Node*,osg::ref_ptr<osg::Node>> NodeSelectFrame;
+		NodeSelectFrame _nodeSelectFrame;
+	};
 }

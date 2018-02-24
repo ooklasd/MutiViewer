@@ -55,8 +55,6 @@ namespace designer
 		Event::List _removeEvents;
 		Event::List _removeAllEvents;
 
-		//物体选择窗口
-		typedef std::map<osg::Node*,osg::ref_ptr<osg::Node>> NodeSelectFrame;
-		NodeSelectFrame _nodeSelectFrame;
+		
 	};
 }
