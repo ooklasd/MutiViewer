@@ -6,6 +6,13 @@
 
 namespace designer
 {
+	//点击事件
+	class ButtonHandle : public osg::Referenced
+	{
+	public:
+		virtual bool handle(const osgGA::GUIEventAdapter& ea,osgGA::GUIActionAdapter& aa) = 0{return false;}
+	};
+
 	//====================================================================================
 	// 点击获取三维物体
 	//====================================================================================
@@ -22,7 +29,15 @@ namespace designer
 
 		void PickObject();
 
+		ButtonHandle* RightButtonHandle() { return _rightButtonHandle; }
+		void RightButtonHandle(ButtonHandle* val) { _rightButtonHandle = val; }
+	public:
+		
+		ButtonHandle* LeftButtonHandle() { return _leftButtonHandle; }
+		void LeftButtonHandle(ButtonHandle* val) { _leftButtonHandle = val; }
 	protected:
+		osg::ref_ptr<ButtonHandle> _leftButtonHandle;
+		osg::ref_ptr<ButtonHandle> _rightButtonHandle;
 		osg::ref_ptr<osg::Node> _pickNode;
 
 		const osgGA::GUIEventAdapter* _ea;

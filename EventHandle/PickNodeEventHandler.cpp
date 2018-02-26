@@ -50,12 +50,16 @@ namespace designer
  			switch(ea.getButton())
 			{
 			case GUIEventAdapter::LEFT_MOUSE_BUTTON:{
+				if(LeftButtonHandle()) return LeftButtonHandle()->handle(ea,aa);
+				PickObject();
+				}break;
+			case GUIEventAdapter::RIGHT_MOUSE_BUTTON:{
+				if(RightButtonHandle()) return RightButtonHandle()->handle(ea,aa);
 				PickObject();
 				}break;
 			}
 		}
 
-		
 		return osgGA::GUIEventHandler::handle(ea,aa);
 	}
 
