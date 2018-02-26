@@ -5,6 +5,7 @@
 #include <map>
 namespace designer
 {
+	class Document;
 	class DESIGNERCMD_API PickView: public osgViewer::View
 	{
 	public:
@@ -15,6 +16,8 @@ namespace designer
 
 		virtual const char* className() const{return "PickView";}
 		virtual const char* libraryName() const{return "DesignerCMD";}
+
+		Document* getDocument();
 
 		const std::list<osg::ref_ptr<osg::Node>>& getPickNodes() const{ return _pickNodes; }
 		const std::list<osg::ref_ptr<osg::Node>>& getLastPickNodes() const{ return _lastPickNodes; }
@@ -31,6 +34,7 @@ namespace designer
 
 		//清空选点，触发OnChangePickNode
 		void removeAllPickNode();
+
 
 	public:
 		class Event :public osg::Referenced

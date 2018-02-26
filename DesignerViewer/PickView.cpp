@@ -1,7 +1,12 @@
 #include "PickView.h"
+#include "Document/Document.h"
 
 
 
+designer::Document* designer::PickView::getDocument()
+{
+	return Document::GetFromObject(*this);
+}
 
 bool designer::PickView::isSelect(osg::Node* n)
 {

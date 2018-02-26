@@ -29,8 +29,11 @@ namespace designer
 		osgGA::GUIActionAdapter* _aa;
 	};
 
-
-	//点选触发添加外框的事件
+	//====================================================================================
+	// 显示的效果,若需要不同的特效，请仿造PickNodeFrameEvent，并绑定
+	// PickNodeFrameEvent为添加黄色外框
+	//====================================================================================
+	//触发添加外框——点选事件
 	class DESIGNERCMD_API PickNodeFrameEvent:public PickView::Event
 	{
 	public:
@@ -53,10 +56,5 @@ namespace designer
 		NodeSelectFrame _nodeSelectFrame;
 	};
 
-	//更新
-	class DESIGNERCMD_API UpViewsEvent:public PickView::Event
-	{
-	public:
-
-	};
+	
 }

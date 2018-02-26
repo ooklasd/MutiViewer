@@ -1,6 +1,7 @@
 #include "Document.h"
 #include "DesignerViewer/DesignerViewer.h"
 #include "hgcd\MgrCoreCD\WCommandManager.h"
+#include <osg/ValueObject>
 
 
 namespace designer
@@ -11,9 +12,26 @@ namespace designer
 	}
 
 
+	void Document::SetToObject(osg::Object& obj,Document* ref)
+	{
+		obj.setUserData(ref);
+	}
+
+	Document* Document::GetFromObject(osg::Object& obj)
+	{
+		return dynamic_cast<Document*>(obj.getUserData());		
+	}
+
 	designer::DesignerViewer* Document::getOrCreateViewer()
 	{
 		_designerViewer = new DesignerViewer(osgViewer::CompositeViewer::CullDrawThreadPerContext);
+		
+		//绑定document到各个View
+		Document::SetToObject(*_designerViewer,this);
+		Document::SetToObject(*_designerViewer->ShapeView(),this);
+		Document::SetToObject(*_designerViewer->CombdoorView(),this);
+		Document::SetToObject(*_designerViewer->ExtractView(),this);
+
 		return _designerViewer;
 	}
 

@@ -5,15 +5,20 @@
 #include <string>
 #include <osgViewer/View>
 
-#include "DesignerViewer/PickView.h"
-#include "hgcw/hgCD/Mesh.h"
-#include "hgcw/hgCD/LocateEntity.h"
-
 #include "osg/ComputeBoundsVisitor"
 #include "osg/ShapeDrawable"
 #include "osg/Shape"
 #include "osg/PolygonMode"
 #include "osg/LineWidth"
+
+#include "DesignerViewer/PickView.h"
+#include "hgcw/hgCD/Mesh.h"
+#include "hgcw/hgCD/LocateEntity.h"
+#include "Document/Document.h"
+
+
+
+
 namespace designer
 {
 

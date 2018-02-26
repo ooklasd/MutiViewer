@@ -19,6 +19,9 @@ namespace designer
 	public: 
 		Document();
 
+		static void SetToObject(osg::Object& obj,Document* ref);
+		static Document* GetFromObject(osg::Object& obj);
+
 	public:
 		//∂‡ ”Õº
 		DesignerViewer* getOrCreateViewer();

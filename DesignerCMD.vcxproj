@@ -94,6 +94,7 @@
     <ClInclude Include="Document\Document.h" />
     <ClInclude Include="Document\DocumentMgr.h" />
     <ClInclude Include="EventHandle\PickNodeEventHandler.h" />
+    <ClInclude Include="EventHandle\UpDateViewsEvent.h" />
     <ClInclude Include="Export.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -106,6 +107,7 @@
     <ClCompile Include="Document\Document.cpp" />
     <ClCompile Include="Document\DocumentMgr.cpp" />
     <ClCompile Include="EventHandle\PickNodeEventHandler.cpp" />
+    <ClCompile Include="EventHandle\UpDateViewsEvent.cpp" />
     <ClCompile Include="Export.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>

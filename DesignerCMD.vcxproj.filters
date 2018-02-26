@@ -60,6 +60,9 @@
     <ClInclude Include="cmd\SceneCMD.h">
       <Filter>cmd</Filter>
     </ClInclude>
+    <ClInclude Include="EventHandle\UpDateViewsEvent.h">
+      <Filter>EventHandle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -91,6 +94,9 @@
     </ClCompile>
     <ClCompile Include="cmd\SceneCMD.cpp">
       <Filter>cmd</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandle\UpDateViewsEvent.cpp">
+      <Filter>EventHandle</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
