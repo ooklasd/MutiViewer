@@ -25,8 +25,27 @@ namespace designer
 
 	void DesignerViewer::frame(double simulationTime/*=USE_REFERENCE_TIME*/)
 	{
+		if (_done) return;
+
+		// OSG_NOTICE<<std::endl<<"CompositeViewer::frame()"<<std::endl<<std::endl;
+
+		if (_firstFrame)
+		{
+			viewerInit();
+
+			if (!isRealized())
+			{
+				realize();
+			}
+
+			_firstFrame = false;
+		}
+		advance(simulationTime);
+		eventTraversal();
+
 		auto lock = getReadLock();
-		osgViewer::CompositeViewer::frame(simulationTime);
+		updateTraversal();
+		renderingTraversals();
 	}
 
 	void DesignerViewer::clearRoot()

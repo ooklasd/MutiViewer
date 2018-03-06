@@ -18,7 +18,7 @@ void designer::UpDateViewsEvent::operator()(PickView* v,osg::Node* n)
 		//显示最后点选的物体，包括点选和取消点选
 		auto curPick = pickNodes.back();
 		auto mesh = dynamic_cast<CombdoorL::Mesh*>(curPick.get());
-		if(mesh != nullptr)
+		if(mesh != nullptr && mesh->getMeshEntity())
 		{
 			//设置拉伸面
 			document->getViewer()->ExtractRoot()->addChild(mesh);
@@ -26,8 +26,9 @@ void designer::UpDateViewsEvent::operator()(PickView* v,osg::Node* n)
 			//设置横截面
 			//根据横截面生成geometry
 			osg::ref_ptr<osg::Node> shapelineNode = nullptr;
-						
-			osg::ref_ptr<osg::Vec3Array> shapeLine = dynamic_cast<osg::Vec3Array*>(mesh->getShapeLine()->clone(osg::CopyOp::DEEP_COPY_ALL));
+			
+			auto meshEntity = mesh->getMeshEntity();
+			osg::ref_ptr<osg::Vec3Array> shapeLine = dynamic_cast<osg::Vec3Array*>(meshEntity->getShapeLine()->clone(osg::CopyOp::DEEP_COPY_ALL));
 			osg::ref_ptr<osg::Geometry> shaplineGe = new osg::Geometry();
 			shaplineGe->setVertexArray(shapeLine);
 			/*shaplineGe->setColorArray(new osg::Vec2Array(1));

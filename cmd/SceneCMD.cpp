@@ -1,5 +1,6 @@
 #include "SceneCMD.h"
 #include "hgcw/hgCD/Combdoor.h"
+#include "hgcw/hgCD/CombdoorWriter.h"
 
 namespace designer
 {
@@ -7,18 +8,34 @@ namespace designer
 
 	bool QuerySceneInfoCMD::doIt(const MgrCore::WArgType &args)
 	{
+		using namespace CombdoorL;
 		try
 		{
-			auto& data = args["data"];
+			const auto data = IO(args["data"]);
+
+			unsigned type = 0;
+			if(data.get_isLayout(false)) type |= CombdoorWriter::LAYOUT;
+			if(data.get_isMaterial(false)) type |= CombdoorWriter::MATERIAL;
+			if(data.get_isMesh(false)) type |= CombdoorWriter::MESH;
+			if(data.get_isShapeline(false)) type |= CombdoorWriter::SHAPELINE;
+			if(data.get_isAll(false)) type |= CombdoorWriter::ALL;
+
+
 			auto l = getViewer()->getReadLock();
 			
 			auto root = getDocument()->getViewer()->CombdoorRoot();
 			
 			//使用遍历器获取信息
-			SceneInfoVisitor siV;
-			root->accept(siV);
+			CombdoorWriter writer(type);
+			auto cbd = dynamic_cast<Combdoor*>(root->getChild(0));
+			if(cbd)
+				writer.write(cbd);
 
-			result(resOK,std::move(siV.getResult()));
+#ifdef _DEBUG
+			std::string res = Json::StyledWriter().write(writer.Result());
+#endif // _DEBUG
+
+			result(resOK,std::move(writer.Result()));
 			return true;
 		}
 		catch (std::exception& e)
@@ -29,19 +46,14 @@ namespace designer
 		return true;
 	}
 
-	void SceneInfoVisitor::apply(osg::Node& node)
+	bool QuerySceneInfoCMD::IO::isValid() const
 	{
-
+		throw std::logic_error("The method or operation is not implemented.");
 	}
 
-	void SceneInfoVisitor::apply(osg::Geode& node)
+	void QuerySceneInfoCMD::IO::format()
 	{
-
-	}
-
-	void SceneInfoVisitor::apply(osg::Group& node)
-	{
-
+		throw std::logic_error("The method or operation is not implemented.");
 	}
 
 }

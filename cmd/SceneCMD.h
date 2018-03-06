@@ -19,33 +19,20 @@ namespace designer
 		virtual bool doIt(const MgrCore::WArgType &args);
 
 	public:
-		class IO : public CombdoorIO::BaseIO
+		class DESIGNERCMD_API IO : public CombdoorIO::BaseIO
 		{
+		public:
+			IO_OBJECT(IO,CombdoorIO::BaseIO);
 
+			JsonMember(isMesh,bool);
+			JsonMember(isMaterial,bool);
+			JsonMember(isShapeline,bool);
+			JsonMember(isLayout,bool);
+			JsonMember(isAll,bool);
+
+			virtual bool isValid() const;
+
+			virtual void format();
 		};
-
-	};
-
-	class SceneInfoVisitor : public osg::NodeVisitor
-	{
-	public:
-		SceneInfoVisitor():osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN)
-		{
-			_parentJson = nullptr;
-		}
-		Json::Value& getResult(){return _infoJson;}
-		const Json::Value& getResult()const {return _infoJson;}
-
-		virtual void apply(osg::Node& node);
-
-		virtual void apply(osg::Geode& node);
-
-		virtual void apply(osg::Group& node);
-
-	private:
-		Json::Value _infoJson;
-		Json::Value* _parentJson;
-	};
-
-	
+	};	
 }
