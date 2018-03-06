@@ -2,9 +2,11 @@
 #include "hgcd/MgrCoreCD/WICommand.h"
 #include "..\Document/Document.h"
 #include "..\Export.h"
+#include "hgcw\hgCD\BaseIO.h"
+
 
 class MgrCore::WICommand;
-
+class CombdoorIO::BaseIO;
 
 #define CMD_STATIC(name)  \
 	static const char* commandName(){return #name;}\
@@ -21,6 +23,10 @@ namespace designer
 			resError = 0,resOK=1
 		};
 
+		//需要提供的命令格式
+		virtual Json::Value getCMDFormat() = 0{return Json::Value();}
+
+		
 	public:
 		//====================================================================================
 		// 快捷获取函数
@@ -54,9 +60,14 @@ namespace designer
 		// 快捷返回函数
 		//result返回Data节点
 		//====================================================================================
+	public:
 		Json::Value& result(int code);
-		Json::Value& result(int code,const char* str);
-		Json::Value& result(int code,const Json::Value& data);
-		Json::Value& result(int code,Json::Value&& data);
+		Json::Value& result(int code,const char* msg);
+		Json::Value& result(int code,Json::Value data);
+
+		Json::Value& resultRef(){return mResult["result"];}
+		Json::Value& resultDataRef(){return mResult["data"];}
+		Json::Value& resultMsgRef(){return mResult["msg"];}
+		Json::Value& resultFormatRef(){return mResult["format"];}
 	};
 }

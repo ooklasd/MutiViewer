@@ -41,9 +41,17 @@ namespace designer
 		catch (std::exception& e)
 		{
 			result(resError,e.what());
+			resultFormatRef() = getCMDFormat();
 			return false;
 		}
 		return true;
+	}
+
+	Json::Value QuerySceneInfoCMD::getCMDFormat()
+	{
+		IO io;
+		io.format();
+		return std::move(io.getOrMoveJson());
 	}
 
 	bool QuerySceneInfoCMD::IO::isValid() const

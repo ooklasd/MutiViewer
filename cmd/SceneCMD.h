@@ -18,6 +18,8 @@ namespace designer
 
 		virtual bool doIt(const MgrCore::WArgType &args);
 
+		virtual Json::Value getCMDFormat();
+
 	public:
 		class DESIGNERCMD_API IO : public CombdoorIO::BaseIO
 		{

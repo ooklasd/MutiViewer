@@ -34,28 +34,21 @@ namespace designer
 	Json::Value& cmd::result(int code)
 	{
 		mResult["result"] = code;
-		return mResult["data"];
+		return resultDataRef();
 	}
 
-	Json::Value& cmd::result(int code,const char* str)
+	Json::Value& cmd::result(int code,const char* msg)
 	{
 		result(code);
-		mResult["data"] = str;
-		return mResult["data"];
+		resultMsgRef() = msg;
+		return resultDataRef();
 	}
 
-	Json::Value& cmd::result(int code,const Json::Value& data)
+	Json::Value& cmd::result(int code,Json::Value data)
 	{
 		result(code);
-		mResult["data"] = data;	
-		return mResult["data"];
-	}
-
-	Json::Value& cmd::result(int code,Json::Value&& data)
-	{
-		result(code);
-		mResult["data"] = std::move(data);	
-		return mResult["data"];
+		resultDataRef() = std::move(data);	
+		return resultDataRef();
 	}
 
 }
