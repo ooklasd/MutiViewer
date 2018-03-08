@@ -63,6 +63,9 @@
     <ClInclude Include="EventHandle\UpDateViewsEvent.h">
       <Filter>EventHandle</Filter>
     </ClInclude>
+    <ClInclude Include="EventHandle\PickNodeToUIEvent.h">
+      <Filter>EventHandle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -96,6 +99,9 @@
       <Filter>cmd</Filter>
     </ClCompile>
     <ClCompile Include="EventHandle\UpDateViewsEvent.cpp">
+      <Filter>EventHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandle\PickNodeToUIEvent.cpp">
       <Filter>EventHandle</Filter>
     </ClCompile>
   </ItemGroup>
