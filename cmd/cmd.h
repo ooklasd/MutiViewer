@@ -23,10 +23,13 @@ namespace designer
 			resError = 0,resOK=1
 		};
 
-		//需要提供的命令格式
-		virtual Json::Value getCMDFormat() = 0{return Json::Value();}
+		static unsigned GetResultCode(const Json::Value& data)				{return data["result"].asUInt();}
+		static std::string GetResultMessage(const Json::Value& data)		{return data["msg"].isString()?data["result"].asString():"";}
+		static const Json::Value& GetResultFormat(const Json::Value& data)	{return data["format"];}
+		static const Json::Value& GetResultData(const Json::Value& data)	{return data["data"];}
 
-		
+		//需要提供的命令格式
+		virtual Json::Value getCMDFormat() = 0{return Json::Value();}		
 	public:
 		//====================================================================================
 		// 快捷获取函数
@@ -69,9 +72,9 @@ namespace designer
 		Json::Value& result(int code,const char* msg);
 		Json::Value& result(int code,Json::Value data);
 
-		Json::Value& resultRef(){return mResult["result"];}
-		Json::Value& resultDataRef(){return mResult["data"];}
-		Json::Value& resultMsgRef(){return mResult["msg"];}
-		Json::Value& resultFormatRef(){return mResult["format"];}
+		Json::Value& resultRef()		{return mResult["result"];}
+		Json::Value& resultDataRef()	{return mResult["data"];}
+		Json::Value& resultMsgRef()		{return mResult["msg"];}
+		Json::Value& resultFormatRef()	{return mResult["format"];}
 	};
 }
