@@ -43,9 +43,26 @@ namespace designer
 		advance(simulationTime);
 		eventTraversal();
 
+		//添加读锁，渲染时不能修改场景
 		auto lock = getReadLock();
 		updateTraversal();
 		renderingTraversals();
+	}
+
+	OpenThreads::ScopedReadLock DesignerViewer::getReadLock()
+	{
+		return OpenThreads::ScopedReadLock(_frameMutex);
+	}
+
+	OpenThreads::ScopedWriteLock DesignerViewer::getWriteLock()
+	{
+		auto userData = dynamic_cast<osg::Object*>(getUserData());
+		if(userData)
+		{
+			auto second = (unsigned)(osg::Timer::instance()->tick()/1000);
+			userData->setUserValue("LastModifyTime",second);
+		}
+		return OpenThreads::ScopedWriteLock(_frameMutex);
 	}
 
 	void DesignerViewer::clearRoot()

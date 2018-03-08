@@ -21,9 +21,12 @@ namespace designer
 			if(data.get_isAll(false)) type |= CombdoorWriter::ALL;
 
 
-			auto l = getViewer()->getReadLock();
+			auto l = getReadLock();
 			
 			auto root = getDocument()->getViewer()->CombdoorRoot();
+			if(getDocument()->isEmpty()){
+				throw std::logic_error("当前文档为空");
+			}
 			
 			//使用遍历器获取信息
 			CombdoorWriter writer(type);
@@ -56,13 +59,24 @@ namespace designer
 
 	bool QuerySceneInfoCMD::IO::isValid() const
 	{
-		throw std::logic_error("The method or operation is not implemented.");
+		auto isOneTrue = get_isAll(false) 
+			|| get_isLayout(false)
+			|| get_isMesh(false)
+			|| get_isShapeline(false)
+			|| get_isLayout(false);
+		//若有一个为true则合法
+		return isOneTrue;
 	}
 
 	void QuerySceneInfoCMD::IO::format()
 	{
-		throw std::logic_error("The method or operation is not implemented.");
+		set_isAll(true);
+		set_isMaterial(false);
+		set_isMesh(false);
+		set_isShapeline(false);
+		set_isLayout(false);
 	}
+
 
 }
 

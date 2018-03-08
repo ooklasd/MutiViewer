@@ -55,6 +55,10 @@ namespace designer
 		std::list<osg::ref_ptr<osg::Node>>& getCombdoorPickNodes();
 		osg::Node* getCombdoorPickNode();
 
+		//全局锁快捷函数
+		OpenThreads::ScopedReadLock getReadLock(){return getViewer()->getReadLock();}
+		OpenThreads::ScopedWriteLock getWriteLock(){return getViewer()->getWriteLock();}
+
 
 		//====================================================================================
 		// 快捷返回函数

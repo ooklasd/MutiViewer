@@ -5,14 +5,23 @@
 #include <osgViewer/CompositeViewer>
 #include "..\DesignerViewer/DesignerViewer.h"
 #include "hgcd\MgrCoreCD\WCommandManager.h"
+#include<osg/Timer>
 
 class MgrCore::WCommandManager;
+
+#define USER_VALUE(TYPE,NAME)\
+	bool get##NAME(TYPE& temp){return getUserValue(#NAME,temp);}\
+	void set##NAME(const TYPE& temp){	setUserValue(#NAME,temp);}
+
 
 namespace designer
 {
 	class DESIGNERCMD_API Document;
 
-
+	//====================================================================================
+	// 文档管理，包括场景和命令
+	// userdata里面存放各种数值
+	//====================================================================================
 	class DesignerViewer;
 	class Document :public osg::Object
 	{
@@ -48,6 +57,10 @@ namespace designer
 			return "Document";
 		}
 
+		////调用view里面的锁，转接作用
+		//OpenThreads::ScopedReadLock getReadLock(){_designerViewer->getReadLock();}
+		//OpenThreads::ScopedWriteLock getWriteLock(){_designerViewer->getWriteLock();}
+
 	public:
 		// 执行命令json，返回json
 		bool executeJson(const Json::Value& json,MgrCore::ResultType &resultStringList);
@@ -80,6 +93,16 @@ public:
 		//是否为空白文档
 		bool isEmpty()const;
 
+		USER_VALUE(unsigned,LastSaveTime);
+		USER_VALUE(unsigned,LastModifyTime);
+		USER_VALUE(std::string,TempFile);
+
+		//文件名
+		const std::string& getFileName()const{return _fileName;}
+
+		//全路径
+		const std::string& getFilePath()const{return _filePath;}
+		void setFilePath(std::string v);
 	protected:
 		osg::ref_ptr<jsonCall> _uiCall;
 
@@ -89,8 +112,8 @@ public:
 		//命令管理器
 		MgrCore::WCommandManager _wCommandManager;
 
-		std::string _fileName;//文件全路径
-		std::string _filePath;//所在文件夹路径
+		std::string _fileName;//文件名
+		std::string _filePath;//全路径
 		
 	};
 

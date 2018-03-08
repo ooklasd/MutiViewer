@@ -2,6 +2,7 @@
 #include "DesignerViewer/DesignerViewer.h"
 #include "hgcd\MgrCoreCD\WCommandManager.h"
 #include <osg/ValueObject>
+#include <osgDB/FileNameUtils>
 
 
 namespace designer
@@ -24,6 +25,8 @@ namespace designer
 
 	designer::DesignerViewer* Document::getOrCreateViewer()
 	{
+		if(_designerViewer) return _designerViewer;
+
 		_designerViewer = new DesignerViewer(osgViewer::CompositeViewer::CullDrawThreadPerContext);
 		
 		//绑定document到各个View
@@ -111,7 +114,15 @@ namespace designer
 
 	bool Document::isEmpty() const
 	{
-		return (_designerViewer == nullptr || _designerViewer->CombdoorRoot() == nullptr || _designerViewer->CombdoorRoot()->getNumChildren() == 0);
+		return (_designerViewer == nullptr 
+			|| _designerViewer->CombdoorRoot() == nullptr 
+			|| _designerViewer->CombdoorRoot()->getNumChildren() == 0);
+	}
+
+	void Document::setFilePath(std::string v)
+	{
+		_filePath = std::move(v);
+		_fileName = osgDB::getStrippedName(_filePath);
 	}
 
 }
