@@ -49,8 +49,8 @@ namespace designer
 
 		virtual void frame(double simulationTime=USE_REFERENCE_TIME);
 
-		OpenThreads::ScopedReadLock getReadLock(){return OpenThreads::ScopedReadLock(_frameMutex);}
-		OpenThreads::ScopedWriteLock getWriteLock(){return OpenThreads::ScopedWriteLock(_frameMutex);}
+		OpenThreads::ScopedReadLock getReadLock();
+		OpenThreads::ScopedWriteLock getWriteLock();
 
 	public:
 		void clearRoot();
