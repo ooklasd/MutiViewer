@@ -26,7 +26,9 @@ namespace designer
 		static unsigned GetResultCode(const Json::Value& data)				{return data["result"].asUInt();}
 		static std::string GetResultMessage(const Json::Value& data)		{return data["msg"].isString()?data["result"].asString():"";}
 		static const Json::Value& GetResultFormat(const Json::Value& data)	{return data["format"];}
+		static Json::Value& GetResultFormat(Json::Value& data)				{return data["format"];}
 		static const Json::Value& GetResultData(const Json::Value& data)	{return data["data"];}
+		static Json::Value& GetResultData(Json::Value& data)				{return data["data"];}
 
 		//需要提供的命令格式
 		virtual Json::Value getCMDFormat() = 0{return Json::Value();}		
