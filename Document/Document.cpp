@@ -70,15 +70,15 @@ namespace designer
 		return _wCommandManager.executeString(commandString,resultStringList,this);
 	}
 
-	bool Document::executeCommand(const std::string& commmandName,const Json::Value& data)
+	bool Document::executeCommand(const std::string& commmandName,Json::Value data)
 	{
 		MgrCore::ResultType resultStringList;
-		return executeCommand(commmandName,data,resultStringList);
+		return executeCommand(commmandName,std::move(data),resultStringList);
 	}
 
-	bool Document::executeCommand(const std::string& commmandName,const Json::Value& data,MgrCore::ResultType &resultStringList)
+	bool Document::executeCommand(const std::string& commmandName,Json::Value data,MgrCore::ResultType &resultStringList)
 	{
-		return executeJson(makeCommand(commmandName,data),resultStringList);
+		return executeJson(makeCommand(commmandName,std::move(data)),resultStringList);
 	}
 
 	Json::Value Document::makeCommand(const std::string& commmandName,const Json::Value& data)

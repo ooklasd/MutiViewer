@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cmd\cmd.h" />
+    <ClInclude Include="cmd\LayoutCMD.h" />
     <ClInclude Include="cmd\SceneCMD.h" />
     <ClInclude Include="cmd\SelectObjectCMD.h" />
     <ClInclude Include="DesignerViewer\DesignerViewer.h" />
@@ -103,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cmd\cmd.cpp" />
+    <ClCompile Include="cmd\LayoutCMD.cpp" />
     <ClCompile Include="cmd\SceneCMD.cpp" />
     <ClCompile Include="cmd\SelectObjectCMD.cpp" />
     <ClCompile Include="DesignerViewer\DesignerViewer.cpp" />
