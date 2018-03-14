@@ -1,7 +1,7 @@
 #include "SceneCMD.h"
 #include "hgcw/hgCD/Combdoor.h"
 #include "hgcw/hgCD/CombdoorWriter.h"
-
+  
 namespace designer
 {
 	MgrCore::CmdRegister<QuerySceneInfoCMD> QUERYSCENEINFOCMD;
