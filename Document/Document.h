@@ -9,9 +9,12 @@
 
 class MgrCore::WCommandManager;
 
+#ifndef USER_VALUE
 #define USER_VALUE(TYPE,NAME)\
 	bool get##NAME(TYPE& temp){return getUserValue(#NAME,temp);}\
 	void set##NAME(const TYPE& temp){	setUserValue(#NAME,temp);}
+#endif
+
 
 
 namespace designer

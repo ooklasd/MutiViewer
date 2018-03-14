@@ -8,6 +8,7 @@
 #include "hgcw/hgCD/Mesh.h"
 #include "hgcw/hgCD/LocationCreater.h"
 #include "hgcw/hgCD/TClassVisitor.h"
+#include "hgcw/hgCD/CombdoorReader.h"
 
 namespace designer
 {
@@ -29,7 +30,7 @@ namespace designer
 				throw std::logic_error("没有找到ID:"+id+"节点");
 
 			LocateEntity* node = nodeList.front();
-			WriteLocateEntityVisitor::writeOneLocateEntity(node,resultDataRef());
+			CombdoorWriter::WriteOneLocateEntity(node,resultDataRef());
 			result(resOK);
 		}
 		catch (std::exception& e)
@@ -100,20 +101,6 @@ namespace designer
 				ent->setAutoUVFromJson(layoutio.get_textureAutoUV().JsonRef());
 			}
 
-			//添加mesh
-			if(layoutio.MeshIsNull() == false){
-				//清楚之前的
-				ent->clearMesh();				
-
-				//重新添加
-				auto meshlist = db->getMeshByIDs(layoutio.get_Mesh());
-				for (auto it = meshlist.begin();it != meshlist.end();++it)
-				{
-					if(*it != nullptr)
-						ent->addChild(*it);
-				}
-			}
-
 			//更新布局
 			if(layoutio.layoutIsNull() == false){
 				auto location = LocationCreater::LayoutOnLoad(layoutio.get_layout(),ent);
@@ -149,7 +136,7 @@ namespace designer
 		using namespace CombdoorL;
 		auto l = getReadLock();
 		osg::ref_ptr<Combdoor> d =  getCurCombdoor(getCombdoorRoot());
-		return d->FlowLayoutPanelOnLoad(data);
+		return CombdoorReader::CreateLayoutStatic(data,"",0,0);
 	}
 
 	bool DeleteLayoutInfoCMD::doIt(const MgrCore::WArgType &args)
