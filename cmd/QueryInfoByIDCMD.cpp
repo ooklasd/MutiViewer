@@ -24,6 +24,7 @@ bool designer::QueryInfoByIDCMD::doIt(const MgrCore::WArgType &args)
 		LocateEntity* node = dynamic_cast<LocateEntity*>(nodeList.front());
 		if(node) 
 		{
+			resultDataRef()["className"] = node->className();
 			CombdoorWriter::WriteOneLocateEntity(node,resultDataRef());
 			result(resOK);
 			return true;
@@ -31,6 +32,7 @@ bool designer::QueryInfoByIDCMD::doIt(const MgrCore::WArgType &args)
 		Mesh* nodeMesh = dynamic_cast<Mesh*>(nodeList.front());
 		if(nodeMesh) 
 		{
+			resultDataRef()["className"] = node->className();
 			CombdoorWriter::WriteMesh(nodeMesh,resultDataRef());
 			result(resOK);
 			return true;
