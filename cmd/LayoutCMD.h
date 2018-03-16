@@ -27,10 +27,10 @@ namespace designer
 	};	
 
 
-	class AddUpdateLayoutInfoCMD : public cmd
+	class AddUpdateLayoutCMD : public cmd
 	{
 	public:
-		CMD_STATIC(AddUpdateLayoutInfo);
+		CMD_STATIC(AddUpdateLayout);
 
 		virtual bool isUndoable(){return false;}
 

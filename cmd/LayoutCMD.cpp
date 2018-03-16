@@ -9,6 +9,7 @@
 #include "hgcw/hgCD/LocationCreater.h"
 #include "hgcw/hgCD/TClassVisitor.h"
 #include "hgcw/hgCD/CombdoorReader.h"
+#include "hgcw/hgCD/CombdoorWriter.h"
 
 namespace designer
 {
@@ -50,8 +51,8 @@ namespace designer
 		return std::move(format);
 	}
 
-	MgrCore::CmdRegister<AddUpdateLayoutInfoCMD> ADDUPDATELAYOUTINFOCMD;
-	bool AddUpdateLayoutInfoCMD::doIt(const MgrCore::WArgType &args)
+	MgrCore::CmdRegister<AddUpdateLayoutCMD> ADDUPDATELAYOUTINFOCMD;
+	bool AddUpdateLayoutCMD::doIt(const MgrCore::WArgType &args)
 	{
 		using namespace CombdoorL;
 		using namespace CombdoorIO;
@@ -108,6 +109,8 @@ namespace designer
 			}
 
 			result(resOK);
+			CombdoorWriter::WriteOneLocateEntity(ent,resultDataRef());
+
 		}
 		catch (std::exception& e)
 		{
@@ -118,12 +121,12 @@ namespace designer
 		return true;
 	}
 
-	Json::Value AddUpdateLayoutInfoCMD::getCMDFormat()
+	Json::Value AddUpdateLayoutCMD::getCMDFormat()
 	{
 		return Json::Value();
 	}
 
-	CombdoorL::Combdoor* AddUpdateLayoutInfoCMD::getCurCombdoor(osg::Node* root)
+	CombdoorL::Combdoor* AddUpdateLayoutCMD::getCurCombdoor(osg::Node* root)
 	{
 		using namespace CombdoorL;
 		auto visitor = TClassVisitor<Combdoor>(1);
@@ -131,7 +134,7 @@ namespace designer
 		return visitor.Result().empty()?nullptr:visitor.Result().front();
 	}
 
-	CombdoorL::LocateEntity* AddUpdateLayoutInfoCMD::addLocateEntity(const Json::Value& data)
+	CombdoorL::LocateEntity* AddUpdateLayoutCMD::addLocateEntity(const Json::Value& data)
 	{
 		using namespace CombdoorL;
 		auto l = getReadLock();
