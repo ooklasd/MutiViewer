@@ -10,10 +10,3 @@
 #else
 #define DESIGNERCMD_API __declspec(dllimport)
 #endif
-
-// 此类是从 DesignerCMD.dll 导出的
-class DESIGNERCMD_API CDesignerCMD {
-public:
-	CDesignerCMD(void){}
-	// TODO: 在此添加您的方法。
-};

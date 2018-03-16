@@ -25,8 +25,6 @@ void designer::PickNodeToUIEvent::operator()(PickView* v,osg::Node* n)
 			document->sendToUI("SelectTreeItem",std::move(v));
 		}
 	}
-
-
 }
 
 void designer::PickNodeToUIEvent::clearView(Document * document)

@@ -76,8 +76,8 @@ namespace designer
 		bool executeCommand(const std::string& commmandName,Json::Value data,MgrCore::ResultType &resultStringList);
 		bool executeCommand(const std::string& commmandName,Json::Value data = Json::Value());
 
-		static Json::Value makeCommand(const std::string& commmandName,const Json::Value& data);
-		static Json::Value makeCommand(const std::string& commmandName,Json::Value&& data);
+		static Json::Value makeCommand(const std::string& commmandName,const Json::Value& data = Json::Value());
+		static Json::Value makeCommand(const std::string& commmandName,Json::Value&& data = Json::Value());
 
 		class jsonCall : public osg::Referenced
 		{

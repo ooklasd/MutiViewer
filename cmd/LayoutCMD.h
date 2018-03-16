@@ -45,10 +45,10 @@ namespace designer
 		CombdoorL::LocateEntity* addLocateEntity(const Json::Value& data);
 	};	
 
-	class DeleteLayoutInfoCMD : public cmd
+	class DeleteLocateEntityCMD : public cmd
 	{
 	public:
-		CMD_STATIC(DeleteLayoutInfo);
+		CMD_STATIC(DeleteLocateEntity);
 
 		virtual bool isUndoable(){return false;}
 

@@ -139,7 +139,8 @@ namespace designer
 		return CombdoorReader::CreateLayoutStatic(data,"",0,0);
 	}
 
-	bool DeleteLayoutInfoCMD::doIt(const MgrCore::WArgType &args)
+	MgrCore::CmdRegister<DeleteLocateEntityCMD> DELETELOCATEENTITYCMD;
+	bool DeleteLocateEntityCMD::doIt(const MgrCore::WArgType &args)
 	{
 		try
 		{
@@ -151,7 +152,7 @@ namespace designer
 			std::string id = data["id"].asString();
 			
 			LocateEntityIDVisitor entV(id);
-
+			getCombdoorRoot()->accept(entV);
 			if(entV.getNodeList().empty())
 				throw std::logic_error("ID£º"+id+"²»´æÔÚ");
 
@@ -176,7 +177,7 @@ namespace designer
 		return true;
 	}
 
-	Json::Value DeleteLayoutInfoCMD::getCMDFormat()
+	Json::Value DeleteLocateEntityCMD::getCMDFormat()
 	{
 		Json::Value temp;
 		temp["id"]= "";

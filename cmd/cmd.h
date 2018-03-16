@@ -23,8 +23,8 @@ namespace designer
 			resError = 0,resOK=1
 		};
 
-		static unsigned GetResultCode(const Json::Value& data)				{return data["result"].asUInt();}
-		static std::string GetResultMessage(const Json::Value& data)		{return data["msg"].isString()?data["result"].asString():"";}
+		static unsigned GetResultCode(const Json::Value& data)				{return data["result"].isUInt()?data["result"].asUInt():resError;}
+		static std::string GetResultMessage(const Json::Value& data)		{return data["msg"].isString()?data["msg"].asString():"";}
 		static const Json::Value& GetResultFormat(const Json::Value& data)	{return data["format"];}
 		static Json::Value& GetResultFormat(Json::Value& data)				{return data["format"];}
 		static const Json::Value& GetResultData(const Json::Value& data)	{return data["data"];}
